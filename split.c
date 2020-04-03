@@ -18,6 +18,19 @@ int main(int ac, char **av)
     str = av[1];
     str2 = strdup(str);
 
+    /* str = "hola:como:estas";
+
+     * strtok (str, ':');
+     * str = "holaNULLcomo:estas"
+     * strtok (NULL, ':');
+     * str = "holaNULLcomoNULLestas"
+     * 
+     * str2 = "hola:como:estas"; 
+     * strtok (str2, ':');
+     * 
+     *     
+     */
+
     if (ac == 3)
     {
         tok = strtok(str, del);
@@ -25,7 +38,8 @@ int main(int ac, char **av)
         {
             i++;
             tok = strtok(NULL, del);
-        }       
+        } 
+         
 
         array = malloc(sizeof(char *) * i);
         tok = strtok(str2, del);
