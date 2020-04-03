@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 /**
@@ -9,12 +10,17 @@
  */
 int main(void)
 {
-	char *line = NULL;
+	char *line;
 	size_t len = 0;
+	int i = 0;
+
+	line = malloc(sizeof(char));
 
 	printf("$ ");
-	getline(&line, &len, 0);
+	i = getline(&line, &len, stdin);
 	printf("%s", line);
+	printf("len: %d\n", (int) len);
+	printf("getline return: %d\n", i);
 
 	free(line);
 	return (0);
