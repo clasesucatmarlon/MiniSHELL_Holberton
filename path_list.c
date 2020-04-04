@@ -58,7 +58,9 @@ list_t *_linkPATH()
     char *tok, *name, *s, *s2;
     int i = 0;
     char *tmpenv;
-	list_t **head = NULL;
+	list_t **head;
+
+	head = malloc(sizeof(list_t));
 
     name = "PATH";
 
@@ -91,6 +93,7 @@ list_t *_linkPATH()
             {
 				s2 = strdup(tok);
                 add_node_end(head, s2);
+				free(s2);
                 tok = strtok(NULL, ":");
             }
             free(s);
@@ -143,7 +146,7 @@ int main()
 	
 	path_l = _linkPATH();
 	print_list(path_l);
-	
+	free(path_l);
     return (0);
 }
 
