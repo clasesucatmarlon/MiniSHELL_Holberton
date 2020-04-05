@@ -60,7 +60,9 @@ list_t *_linkPATH()
     char *tmpenv;
 	list_t **head;
 
-	head = malloc(sizeof(list_t));
+	head = malloc(sizeof(list_t *));
+	*head = NULL;
+	
 
     name = "PATH";
 
@@ -103,6 +105,7 @@ list_t *_linkPATH()
         free(tmpenv);
         i++;
     }
+	free(head);
 	return (NULL);
     
 }
@@ -134,6 +137,29 @@ size_t print_list(const list_t *h)
 	}
 	return (i);
 }
+/**
+ * free_list - prints all the elements of a list_t list.
+ *
+ * @head: List
+ *
+ * Return: void
+ */
+
+void free_list(list_t *head)
+{
+	list_t *current;
+
+	if (head)
+	{
+		while (head)
+		{
+			current = head;
+			head = head->next;
+			free(current->str);
+			free(current);
+		}
+	}
+}
 
 /**
  * main - prints the environment using _getenv
@@ -146,7 +172,9 @@ int main()
 	
 	path_l = _linkPATH();
 	print_list(path_l);
-	free(path_l);
+	free_list(path_l);
+	/* free(path_l); */
     return (0);
 }
+
 
