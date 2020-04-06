@@ -52,16 +52,12 @@ list_t *add_node_end(list_t **head, const char *str)
  *
  * Return: Always 0.
  */
-list_t *_linkPATH()
+list_t *_linkPATH(list_t **head)
 {
     extern char **environ;
     char *tok, *name, *s, *s2;
     int i = 0;
     char *tmpenv;
-	list_t **head;
-
-	head = malloc(sizeof(list_t *));
-	*head = NULL;
 	
 
     name = "PATH";
@@ -105,7 +101,6 @@ list_t *_linkPATH()
         free(tmpenv);
         i++;
     }
-	free(head);
 	return (NULL);
     
 }
@@ -168,12 +163,14 @@ void free_list(list_t *head)
  */
 int main()
 {    
-    list_t *path_l;
+    list_t **head;
+	head = malloc(sizeof(list_t *));
+	*head = NULL;
 	
-	path_l = _linkPATH();
-	print_list(path_l);
-	free_list(path_l);
-	/* free(path_l); */
+	_linkPATH(head);
+	print_list(*head);
+	free_list(*head);
+	free(head);
     return (0);
 }
 
