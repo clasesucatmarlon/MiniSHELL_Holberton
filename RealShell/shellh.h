@@ -14,6 +14,6 @@ int _processing(char **args);
 
 int _execve(char **av);
 
-
-
+/* int _check_builtin(char **args, char *line); */
+int _check_builtin(char **args);
 #endif

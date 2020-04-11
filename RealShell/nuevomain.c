@@ -15,6 +15,7 @@ int main(int ac, char *av[])
     int status = 1, interactive = 0;
     /* int j = 0; */
     char **args;
+    int x = 1;
     
     line = malloc(sizeof(char));
 
@@ -39,7 +40,27 @@ int main(int ac, char *av[])
         }
 
         /* parte la linea y la almacena en un char **str */
-        args = _split(line);  
+        
+        args = _split(line);
+        
+ /*        marlon */
+        x = _check_builtin(args);
+        /*  x = _check_builtin(args, line); */
+        if (x == 1)
+        {
+            perror("comando no válido");
+            printf("\n");
+            continue;
+        }
+/*         else if (x == 0)
+        {
+            exit (98);
+        } */
+        
+
+
+
+        /* marlon      */
 
         /* for(j = 0; args[j] != NULL; j++)
         {
@@ -48,11 +69,31 @@ int main(int ac, char *av[])
         } */
 
         /*procesa el array de str y ejecuta dependiendo del tipo */
-        status = _processing(args);      
+        status = _processing(args);
 
     }while (status && interactive);
     free(line);
     free(args);
 
     return (0);
+}
+
+int _check_builtin(char **args)
+{
+    /* char *straux[] = {"exit", "env"}; */
+    
+    if (strcmp(args[0], "exit") == 0)
+    {
+        printf("Estoy en la funcion exit y hay que llamar esa función\n");
+        exit (98);
+        /* execve(args[0], args, NULL); */
+        /* return (0); */
+    }
+    else if (strcmp(args[0], "env") == 0)
+    {
+        _
+        printf("Estoy en la funcion env y hay que llamar a esa función");
+        return (0);
+    }
+    return (1);
 }
