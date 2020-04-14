@@ -5,7 +5,7 @@
  * Return: Always 0.
  */
 
-int _print_env(char **av)
+int _print_env(char __attribute__((unused)) **av)
 {
     unsigned int i;
     extern char **environ;

@@ -8,7 +8,7 @@
  *
  * Return: Always 0.
  */
-int main(int ac, char *av[])
+int main(void)
 {
     char *line;
     size_t len = 0;
@@ -57,9 +57,9 @@ int main(int ac, char *av[])
  * sign_handler - handles the abscensce of a sign
  * @sig: integer
  */
-void handle_ctrl_c(int sign)
+void handle_ctrl_c(int __attribute__((unused)) sign)
 {
-	/* sign = sign * 1; */
+	sign = sign * 1;
 	_putchar('\n');
 	_putchar('$');
     _putchar(' ');
